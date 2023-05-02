@@ -6,4 +6,4 @@ RUN pip install -r /tmp/requirements.txt
 COPY ./osrs_gept /app/osrs_gept
 WORKDIR /app
 
-CMD ["uvicorn", "osrs_gept.main:app"]
+ENTRYPOINT ["uvicorn", "osrs_gept.main:app"]
