@@ -9,7 +9,7 @@
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["osrs_gept.main:app", "--reload"],
+      "args": ["osrs_gept.main:app", "--reload", "--host", "0.0.0.0"],
       "jinja": true,
       "justMyCode": true
     }
