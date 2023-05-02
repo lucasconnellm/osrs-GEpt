@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "osrs-gept"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Connell <lucas.mccord@outlook.com>"]
+readme = "README.md"
+packages = [{include = "osrs_gept"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.95.1"
+pydantic = {extras = ["dotenv"], version = "^1.10.7"}
+dependency-injector = "^4.41.0"
+humps = "^0.2.2"
+uvicorn = "^0.22.0"
+requests = "^2.29.0"
+fastapi-pagination = "^0.12.2"
+cachetools = "^5.3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

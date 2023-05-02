@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "osrs_prices",
+  "name_for_human": "OSRS Price Checker",
+  "description_for_model": "Plugin for checking OSRS prices.",
+  "description_for_human": "Plugin for checking OSRS prices.  Useful for flipping and alching.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:8000/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://localhost:8000/logo.png",
+  "contact_email": "hello@contact.com",
+  "legal_info_url": "http://example.com/legal-info"
+}
