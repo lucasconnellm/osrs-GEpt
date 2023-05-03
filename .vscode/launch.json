@@ -10,6 +10,7 @@
       "request": "launch",
       "module": "uvicorn",
       "args": ["osrs_gept.main:app", "--reload", "--host", "0.0.0.0"],
+      "envFile": "${workspaceFolder}/.env",
       "jinja": true,
       "justMyCode": true
     }

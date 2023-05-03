@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     wiki_url: str = "https://oldschool.runescape.wiki/w/"
 
     user_agent: str = "osrs_gept/0.0.1"
+    running_on: str = ""
 
     class Config:
         env_file = ".env"
@@ -15,4 +16,5 @@ class Settings(BaseSettings):
             "api_url": {"env": "API_URL"},
             "wiki_url": {"env": "WIKI_URL"},
             "user_agent": {"env": "USER_AGENT"},
+            "running_on": {"env": "RUNNING_ON"},
         }

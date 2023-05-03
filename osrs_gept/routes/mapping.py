@@ -11,6 +11,7 @@ from fastapi_pagination import (
     Page,
     paginate,
 )
+from pydantic import Field
 
 from osrs_gept.container import OsrsContainer
 from osrs_gept.models import (
@@ -23,6 +24,11 @@ from osrs_gept.pagination import Sort, SortDirection
 from osrs_gept.wiki_client import WikiClient
 
 router = APIRouter()
+
+
+Page = Page.with_custom_options(
+    size=Field(100, ge=1, le=1000),
+)
 
 
 @router.get(
@@ -38,9 +44,11 @@ def get_mapping(
     wiki_client: WikiClient = Depends(
         Provide[OsrsContainer.wiki_client_factory],
     )
-) -> MappingPayload:
+) -> Page[MappingPayload]:
     sort = None
     if sort_field is not None:
+        if sort_field == "id":
+            sort_field = "id_"
         sort = Sort(field=sort_field, order=sort_order)
     return paginate(wiki_client.get_mapping(sort=sort))
 
@@ -58,8 +66,10 @@ def get_mapping_slim(
     wiki_client: WikiClient = Depends(
         Provide[OsrsContainer.wiki_client_factory],
     )
-) -> SlimMappingPayload:
+) -> Page[SlimMappingPayload]:
     sort = None
     if sort_field is not None:
+        if sort_field == "id":
+            sort_field = "id_"
         sort = Sort(field=sort_field, order=sort_order)
     return paginate(wiki_client.get_mapping_slim(sort=sort))

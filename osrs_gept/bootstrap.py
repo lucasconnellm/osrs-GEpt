@@ -1,3 +1,4 @@
+import jinja2
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import add_pagination
@@ -22,6 +23,22 @@ def init_app(app: FastAPI):
     ctr = OsrsContainer()
     ctr.init_resources()
     ctr.wire(modules=[time_block, latest, mapping])
+
+    # Generate the AI plugin config
+    jinja_ai_template = jinja2.Template(
+        open("osrs_gept/static/ai-plugin.json.jinja").read(),
+    )
+    with open("osrs_gept/static/ai-plugin.json", "w") as f:
+        f.write(jinja_ai_template.render(running_on=ctr.config.running_on()))
+
+    # Specify server in OpenAPI spec
+    app.servers = [
+        {
+            "url": ctr.config.running_on(),
+            "description": "The server this API is running on",
+        }
+    ]
+    
 
     @app.on_event("startup")
     async def startup():
