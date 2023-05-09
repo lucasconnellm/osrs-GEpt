@@ -24,7 +24,7 @@ router = APIRouter()
 
 
 Page = Page.with_custom_options(
-    size=Field(100, ge=1, le=1000),
+    size=Field(100, ge=1),
 )
 
 
